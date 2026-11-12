@@ -1,5 +1,7 @@
 ---
 title: "Sam Landa"
+tagline: "Designing, building, and supporting production systems, including backend APIs and AI agents."
+description: "Sam Landa: Applied Data Science and Policy Studies student at Syracuse University, working across software engineering, data analysis, applied AI, and infrastructure."
 ---
 
 I am a student at Syracuse University studying Applied Data Science and Policy Studies, graduating in May 2027. I work across software engineering, data analysis, applied AI, and infrastructure. I'm currently a Cyberinfrastructure Intern with Syracuse University Research Computing and a Software Engineering Intern at CapitalGrid.
@@ -15,7 +17,7 @@ I am a student at Syracuse University studying Applied Data Science and Policy S
 B.S. Applied Data Science (School of Information Studies), B.A. Policy Studies (Maxwell School of Citizenship and Public Affairs)
 
 - GPA: 3.9 | Dean's List (all semesters) | Invest in Success Scholarship Recipient
-- Relevant coursework: Applied Data Science, Machine Learning, Advanced Python, Open-Source Development, Information Visualization, Database Management Systems, Analysis of Public Policy, Micro/Macroeconomics, Business Communications
+- Relevant coursework: Applied Data Science, Machine Learning, Advanced Python, Open-Source Development, Information Visualization, Database Management Systems, Analysis of Public Policy, Micro/Macroeconomics, Business Communications, Blockchain Management
 - Involvement: Kappa Theta Pi (professional IT fraternity), UnitedAI (Syracuse University AI club)
 
 ## Experience
@@ -88,11 +90,13 @@ Syracuse, NY
 
 ## Skills
 
-- **Languages:** Python, R, SQL, JavaScript/TypeScript, HTML/CSS, Solidity
-- **Data & Analytics:** Excel, Pandas, NumPy, scikit-learn, Matplotlib/Seaborn, ggplot2, Jupyter, statistical modeling, ETL pipelines, SPSS
-- **AI:** LLM APIs (OpenAI, Anthropic), multi-agent systems, Ollama, Hugging Face, LangChain/LangGraph, Model Context Protocol (MCP)
-- **Web:** FastAPI, Flask, Django, Streamlit, React/Node.js, REST APIs, Requests, OpenAPI documentation, PostgreSQL/MySQL/SQLite
-- **Cloud & Infrastructure:** AWS, Azure, GCP, Docker, Linux, Git/GitHub, CI/CD (GitHub Actions)
+| area | tools |
+| --- | --- |
+| Languages | Python, R, SQL, JavaScript/TypeScript, HTML/CSS, Solidity |
+| Data & Analytics | Excel, Pandas, NumPy, scikit-learn, Matplotlib/Seaborn, ggplot2, Jupyter, statistical modeling, ETL pipelines, SPSS |
+| AI | LLM APIs (OpenAI, Anthropic), multi-agent systems, Ollama, Hugging Face, LangChain/LangGraph, Model Context Protocol (MCP) |
+| Web | FastAPI, Flask, Django, Streamlit, React/Node.js, REST APIs, Requests, OpenAPI documentation, PostgreSQL/MySQL/SQLite |
+| Cloud & Infrastructure | AWS, Azure, GCP, Docker, Linux, Git/GitHub, CI/CD (GitHub Actions) |
 
 ## Interests
 

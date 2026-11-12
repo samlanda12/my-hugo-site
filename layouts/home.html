@@ -2,10 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ .Site.Title }}</title>
+  {{ with .Params.description }}
+  <meta name="description" content="{{ . }}">
+  <meta property="og:description" content="{{ . }}">
+  {{ end }}
+  <meta property="og:title" content="{{ .Site.Title }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta name="color-scheme" content="light dark">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+  {{ $css := resources.Get "css/main.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 </head>
 <body>
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
+  <main class="notebook">
+    {{/* Each "## Section" in the content becomes its own notebook cell. */}}
+    {{ $parts := split .Content "<h2" }}
+    {{ range $i, $part := $parts }}
+      {{ $html := cond (eq $i 0) $part (printf "<h2%s" $part) }}
+      <section class="cell{{ if eq $i 0 }} cell--intro{{ end }}">
+        <div class="prompt" aria-hidden="true">[{{ add $i 1 }}]:</div>
+        <div class="cell-body">
+          {{ if eq $i 0 }}
+            <h1>{{ $.Title }}</h1>
+            {{ with $.Params.tagline }}<p class="tagline">{{ . }}</p>{{ end }}
+          {{ end }}
+          {{ $html | safeHTML }}
+        </div>
+      </section>
+    {{ end }}
+  </main>
 </body>
 </html>
