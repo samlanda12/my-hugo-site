@@ -1,0 +1,274 @@
+/* Notebook theme */
+
+:root {
+  --paper: #eef3ec;
+  --grid: #dde7d9;
+  --sheet: #fbfcfa;
+  --sheet-edge: #d3ddd0;
+  --ink: #1d2a33;
+  --muted: #5d6c66;
+  --faint: #9aa8a1;
+  --blue: #1f6fa8;
+  --orange: #ff7f0e;
+  --stripe: #f1f4f0;
+
+  --sans: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "DM Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --gutter: 4.75rem;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #151b1f;
+    --grid: #1d252a;
+    --sheet: #1b2227;
+    --sheet-edge: #2a343a;
+    --ink: #dde5e1;
+    --muted: #93a29b;
+    --faint: #5f6d67;
+    --blue: #6cb2e8;
+    --orange: #ff9f43;
+    --stripe: #212a30;
+    color-scheme: dark;
+  }
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  font-size: 106.25%; /* 17px */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 3rem 1rem 5rem;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.6;
+}
+
+::selection { background: color-mix(in srgb, var(--orange) 35%, transparent); }
+
+/* ---------- The notebook sheet ---------- */
+
+.notebook {
+  max-width: calc(var(--gutter) + 42rem + 3rem);
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 1.5rem 0;
+  background: var(--sheet);
+  border: 1px solid var(--sheet-edge);
+  border-radius: 4px;
+  box-shadow: 0 1px 0 var(--sheet-edge), 0 12px 32px -18px rgb(30 50 40 / 0.35);
+}
+
+/* ---------- Cells ---------- */
+
+.cell {
+  display: grid;
+  grid-template-columns: var(--gutter) minmax(0, 1fr);
+  padding: 1.25rem 0;
+  border-left: 3px solid transparent;
+}
+
+.cell + .cell { border-top: 1px dashed var(--sheet-edge); }
+
+/* Jupyter-style "selected cell" bar. */
+.cell:hover,
+.cell:focus-within { border-left-color: var(--blue); }
+
+.prompt {
+  padding: 0.3rem 0.9rem 0 0;
+  text-align: right;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--blue);
+  opacity: 0.75;
+  user-select: none;
+}
+
+.cell-body > :first-child { margin-top: 0; }
+.cell-body > :last-child { margin-bottom: 0; }
+
+/* ---------- Type ---------- */
+
+h1, h2, h3 {
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+h1 {
+  margin: 0 0 0.35rem;
+  font-size: clamp(2.3rem, 6vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.tagline {
+  margin: 0 0 1.25rem;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+h2 {
+  margin: 0 0 1rem;
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Show the Markdown source marker, as a notebook does while editing. */
+h2::before {
+  content: "## ";
+  font-family: var(--mono);
+  font-weight: 400;
+  color: var(--faint);
+}
+
+h3 {
+  margin: 1.75rem 0 0.2rem;
+  font-size: 1.08rem;
+  font-weight: 600;
+}
+
+h2 + h3 { margin-top: 0; }
+
+p, ul { margin: 0 0 0.9rem; }
+
+ul { padding-left: 1.2rem; }
+
+li + li { margin-top: 0.3rem; }
+
+li::marker { color: var(--faint); }
+
+strong { font-weight: 600; }
+
+/* Location and date lines directly under a role or project. */
+h3 + p {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+}
+
+h3 + p a { color: inherit; }
+
+a {
+  color: var(--blue);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover { text-decoration-thickness: 2px; }
+
+a:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+hr { display: none; }
+
+/* ---------- Intro cell ---------- */
+
+.cell--intro { padding-top: 0.5rem; }
+
+.cell--intro > .cell-body > p:not(.tagline) {
+  font-size: 1.05rem;
+  max-width: 38rem;
+}
+
+/* Contact links as a single row of key: value pairs. */
+.cell--intro ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.5rem;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.cell--intro li + li { margin-top: 0; }
+
+/* ---------- Skills, rendered like a pandas DataFrame ---------- */
+
+table {
+  display: block;
+  overflow-x: auto;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+th, td {
+  padding: 0.45rem 0.8rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+thead th {
+  border-bottom: 1px solid var(--ink);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+tbody tr:nth-child(odd) { background: var(--stripe); }
+
+tbody tr:hover { background: color-mix(in srgb, var(--blue) 10%, transparent); }
+
+/* The first column acts as the DataFrame index. */
+td:first-child {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 640px) {
+  body { padding: 1rem 0.75rem 3rem; }
+
+  .notebook { padding: 0.75rem 1rem; }
+
+  .cell {
+    grid-template-columns: minmax(0, 1fr);
+    padding-left: 0.75rem;
+  }
+
+  .prompt {
+    padding: 0 0 0.4rem;
+    text-align: left;
+  }
+
+  /* Stack each DataFrame row: index on top, values below. */
+  thead { display: none; }
+
+  table, tbody, tr, td { display: block; }
+
+  tr { padding: 0.55rem 0.7rem; }
+
+  td { padding: 0; }
+
+  td:first-child {
+    margin-bottom: 0.15rem;
+    white-space: normal;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cell { transition: border-left-color 120ms ease; }
+}
